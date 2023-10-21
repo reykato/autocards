@@ -1,0 +1,16 @@
+{
+    "deck1" : {
+        "card1": {
+            "question" : "Test question",
+            "answer" : "Test answer. this text is very long and complicated. this text is very long and complicated. this text is very long and complicated.",
+            "next_due" : 1698348800,
+            "spacing" : 86400
+        },
+        "card2": {
+            "question" : "Test question 2",
+            "answer" : "Test answer 2. this text is very long and complicated. this text is very long and complicated. this text is very long and complicated.",
+            "next_due" : 1698048800,
+            "spacing" : 345600
+        }
+    }
+}
