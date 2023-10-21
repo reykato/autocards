@@ -1,0 +1,8 @@
+[Unit]
+Description=Taipy backend for autocards site
+
+[Service]
+ExecStart=python3 /opt/sites/autocards/staging-main.py
+
+[Install]
+WantedBy=multi-user.target
