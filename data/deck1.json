@@ -2,8 +2,8 @@
     {
         "question": "crazy",
         "answer": "test",
-        "next_due": "1698333333",
-        "spacing": ""
+        "next_due": 1698333333,
+        "spacing": -1
     },
     {
         "question": "afaaa",
