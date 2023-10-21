@@ -15,7 +15,7 @@ def getDeckDF(deck_name):
 df = getDeckDF("deck1")
 print(df)
 
-def updateCard(deck_name, card_id, column_name, new_value):
+def editCard(deck_name, card_id, column_name, new_value):
     db = getDeckDB(deck_name)
 
     print(db)
@@ -41,8 +41,17 @@ def deleteCard(deck_name, card_id):
         pass
     print("card deleted")
 
-def addCard(deck_name, card_id):
+def addCard(deck_name):
     db = getDeckDB(deck_name)
 
-    db.append()
+    db.append({})
+    db[-1]["question"] = ""
+    db[-1]["answer"] = ""
+    db[-1]["next_due"] = ""
+    db[-1]["spacing"] = ""
 
+    try:
+        with open(f"data/{deck_name}.json", "w") as file:
+            json.dump(db, file, indent="    ")
+    except:
+        pass
