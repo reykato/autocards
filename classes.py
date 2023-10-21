@@ -1,18 +1,48 @@
 import json
 import pandas as pd
 
-with open("data/test.json") as file:
-    db = json.load(file)
+def getDeckDB(deck_name):
+    try:
+        with open(f"data/{deck_name}.json") as file:
+            db = json.load(file)
+    except:
+        db = []
+    return db
 
-df = pd.DataFrame.from_records(db['deck1']).transpose()
+def getDeckDF(deck_name):
+    return pd.DataFrame.from_records(getDeckDB(deck_name))
 
-def updateCard(card_id, column_name, new_value):
-    with open("data/test.json", "r") as file:
-        db = json.load(file)
+df = getDeckDF("deck1")
+print(df)
 
+def updateCard(deck_name, card_id, column_name, new_value):
+    db = getDeckDB(deck_name)
+
+    print(db)
+    print(f"changing {card_id}, {column_name} to {new_value}")
     db[card_id][column_name] = new_value
+
+    try:
+        with open(f"data/{deck_name}.json", "w") as file:
+            json.dump(db, file, indent="    ")
+    except:
+        pass
+    print("card updated")
     
-    with open("data/test.json", "w") as file:
-        json.dump(db, file)
-    
+def deleteCard(deck_name, card_id):
+    db = getDeckDB(deck_name)
+
+    db.pop(card_id)
+
+    try:
+        with open(f"data/{deck_name}.json", "w") as file:
+            json.dump(db, file, indent="    ")
+    except:
+        pass
+    print("card deleted")
+
+def addCard(deck_name, card_id):
+    db = getDeckDB(deck_name)
+
+    db.append()
 

@@ -2,14 +2,27 @@ from classes import *
 import pandas as pd
 
 def browse_on_edit(state, var_name, action, payload):
-    cp = getattr(state, var_name).copy()
-    cp.loc[payload["index"], payload["col"]] = payload["value"]
-    updateCard(payload["index"], payload["col"], payload["value"])
-    state.assign(var_name, cp)
-    #notify(state, "I", f"Edited value from '{old_value}' to '{value}'. (index '{index}', column '{col}')")
- 
+    print(f"updating card: {payload}")
+    updateCard("deck1", payload["index"], payload["col"], payload["value"])
+    new_df = state.df.copy()
+    new_df.loc[payload["index"], payload["col"]] = payload["value"]
+    state.df = new_df
+    notify(state, "I", "Edited card successfully.")
 
+def browse_on_delete(state, var_name, action, payload):
+    deleteCard("deck1", payload["index"])
+    state.df = state.df.drop(index=payload["index"])
+    notify(state, "I", "Deleted card successfully.")
+
+def browse_on_add(state, var_name, action, payload):
+    addCard("deck1", "")
+    empty_row = pd.DataFrame([[None for _ in state.food_df.columns]], columns=state.food_df.columns)
+    state.df = pd.concat([empty_row, state.food_df], axis=0, ignore_index=True)
+ 
+    notify(state, "S", f"Added a new row.")
+ 
+df = getDeckDF("deck1")
 browse_md = """
-<|{df}|table|on_edit=browse_on_edit|>
+<|{df}|table|on_edit=browse_on_edit|on_delete=browse_on_delete|>
 
 """
