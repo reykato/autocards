@@ -1,2 +1,2 @@
 # Auto Cards
-![WhiteBoard][/docs/images/wb.png]
+![WhiteBoard](/docs/images/wb.png)
