@@ -3,6 +3,7 @@ from taipy.gui import Markdown
 from make_card import *
 from browse import *
 from classes import *
+import pandas as pd
 pages = {
     'review': Markdown(browse_md),
     'make_card': Markdown(make_card_md)  
