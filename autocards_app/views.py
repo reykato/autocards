@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Card
 from .forms import CardForm
 from django.db.models import Q
-from . import set_generator
+from .set_generator import generate_json_file, retrieve_deck_json
 
 def get_cards(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -55,7 +55,7 @@ def generate_user_input(request):
         try:
             prompt = request.POST.get('input1')
             deck_size = int(request.POST.get('input2'))
-            set_generator.retrieve_deck_json(prompt, deck_size)
+            retrieve_deck_json(prompt, deck_size)
         except Exception as e:
             print(str(e))
     context = {}
