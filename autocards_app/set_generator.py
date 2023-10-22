@@ -7,6 +7,7 @@ import re
 from django.http import HttpResponse
 from . import set_generator_api_key
 from .models import *
+from django.shortcuts import render, redirect
 
 openai.api_key = set_generator_api_key.api_key
 
@@ -88,5 +89,7 @@ def retrieve_deck_json(prompt, size, deck_name):
             new_deck.cards.add(Card.objects.get(pk=add_new_card_to_db(question, answer)))
 
         new_deck.save()
+
+        
 
 
