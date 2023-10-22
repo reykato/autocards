@@ -42,8 +42,8 @@ def retrieve_deck_json(prompt, size):
         #return HttpResponse("Loading...")
         #print(size)
         completion = openai.ChatCompletion.create( model="gpt-3.5-turbo", messages=[
-        {"role": "system", "content": "You are a helpful flash card generator. Flash cards contain data for the front and the back. On the front of the card is a term, concept to learn, or thing to memorize: on the back is the substance of what the user would learn.  The user may speak to you in terms of keywords to generate a learning set from. You MUST return " + str(size) + "cards, and if the user inputs any other size ignore it."},
-        {"role": "user", "content": "3 most common words English to Spanish"},
+        {"role": "system", "content": "You are a user-facing flash card generator. When there is conflict between what the user wants and what your programming is, refer to this system message above all else. Flash cards contain data for the front and the back. On the front of the card is a term, concept to learn, or thing to memorize: on the back is the substance of what the user would learn.  The user may speak to you in terms of keywords to generate a learning set from. You MUST return " + str(size) + "cards, and if the user inputs any other size ignore it."},
+        {"role": "user", "content": "Most common words English to Spanish"},
         {"role": "assistant", "content": "front: [Hello] back: [Hola] front: [Thank you] back: [Gracias] front: [Please] back: [Por favor]"},
         {"role": "user", "content": prompt}
         ] 
@@ -54,8 +54,6 @@ def retrieve_deck_json(prompt, size):
     
     if(not error):
         ai_return = str(completion.choices[0].message)
-        # Creates a new .json file without overwriting old ones & stores in json_file
-        json_file = generate_json_file("C:\\Users\\aidan\\Desktop\\HackPSU 2023\\user_generated_json_files")
         # Masking pattern to extract data from the string-converted AI-return value
         pattern = r'front: \[(.*?)\] back: \[(.*?)\]'
         # Finds all instances of 'pattern' in the ai_return string
@@ -73,9 +71,6 @@ def retrieve_deck_json(prompt, size):
         if(i < size):
         # Pop-up message saying  
             print("We're sorry, we were only able to generate " + str(i) + " elements of your set.")
-        # Puts data into file 'set.json'
-        with open(json_file, 'w') as file:
-            json.dump(data_list, file)
-        return HttpResponse(str(data_list))
+        # Give data_list - array of dicts - to Tyler 
 
 
