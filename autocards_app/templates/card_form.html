@@ -1,0 +1,8 @@
+<html>
+    <a href="/app/card_list">Card List</a>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="Submit" value="Submit"/>
+    </form>
+</html>

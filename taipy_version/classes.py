@@ -55,9 +55,8 @@ def addCard(deck_name):
     except:
         pass
 
-def getDecksDF():
+
+def getDecksDB():
     data_dir = Path("data")
     file_names = [x.stem for x in data_dir.iterdir()]
-    print(file_names)
-    decks_df = pd.DataFrame(file_names)
-    return decks_df
+    return file_names
