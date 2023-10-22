@@ -17,19 +17,19 @@ var ease = 0;
             ease = e;
             switch(ease) {
                 case "1":
-                document.getElementById("dif").innerHTML = "Difficulty: Very Hard"
+                document.getElementById("dif").innerText = "Difficulty: Very Hard"
                 break
-                case 2:
-                document.getElementById("dif").innerHTML = "Difficulty: Hard"
+                case "2":
+                document.getElementById("dif").innerText = "Difficulty: Hard"
                 break
-                case 3:
-                document.getElementById("dif").innerHTML = "Difficulty: Medium"
+                case "3":
+                document.getElementById("dif").innerText = "Difficulty: Medium"
                 break
-                case 4:
-                document.getElementById("dif").innerHTML = "Difficulty: Easy"
+                case "4":
+                document.getElementById("dif").innerText = "Difficulty: Easy"
                 break
-                case 5:
-                document.getElementById("dif").innerHTML = "Difficulty: Very Easy"
+                case "5":
+                document.getElementById("dif").innerText = "Difficulty: Very Easy"
                 break
             }
             console.log(ease)
