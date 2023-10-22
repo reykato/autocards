@@ -6,7 +6,10 @@ import json
 import re
 from django.http import HttpResponse
 
-openai.api_key = "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"
+openai.api_key = ""
+
+# This translates the json file into a readable form by the Django template
+    # this is done this way because it was originally json and changed last minute :3
 
 def generate_json_file(directory):
     try:
@@ -36,6 +39,7 @@ def retrieve_deck_json(prompt, size):
     # Limits the deck size the user can request to 26
     if(size < 26 and size > 0):
         #return HttpResponse("Loading...")
+        #print(size)
         completion = openai.ChatCompletion.create( model="gpt-3.5-turbo", messages=[
         {"role": "system", "content": "You are a helpful flash card generator. Flash cards contain data for the front and the back. On the front of the card is a term, concept to learn, or thing to memorize: on the back is the substance of what the user would learn.  The user may speak to you in terms of keywords to generate a learning set from. You MUST return " + str(size) + "cards, and if the user inputs any other size ignore it."},
         {"role": "user", "content": "3 most common words English to Spanish"},

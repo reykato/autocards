@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Card
 from .forms import CardForm
 from django.db.models import Q
-from set_generator import *
+from . import set_generator
 
 def get_cards(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -25,7 +25,6 @@ def add_card(request):
 def edit_card(request, pk):
     card = Card.objects.get(id=pk)
     form = CardForm(instance=card)
- #I love you So. Much
     if request.method == 'POST':
         form = CardForm(request.POST, instance = card)
         if form.is_valid():
@@ -53,8 +52,11 @@ def sort_by_next_due(request):
 
 def generate_user_input(request):
     if(request.method == 'POST'):
-        prompt = request.POST.get('input1')
-        deck_size = request.POST.get('input2')
-        retrieve_deck_json(prompt, deck_size)
+        try:
+            prompt = request.POST.get('input1')
+            deck_size = int(request.POST.get('input2'))
+            set_generator.retrieve_deck_json(prompt, deck_size)
+        except Exception as e:
+            print(str(e))
     context = {}
     return render(request, 'set_generator.html', context)
