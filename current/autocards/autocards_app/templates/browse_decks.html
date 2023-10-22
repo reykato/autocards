@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <div class="grid-container">
+        <a href="/app/card_form">Add Item</a><br><br><br>
+        <a href="{% url 'sortbyid' %}">Sort by ID</a>
+        <a href="{% url 'sortbyname' %}">Sort by Name</a><br><br>
+        <form method="GET" action="{% url 'list' %}">
+            <input type="text" name="q" placeholder="Search by ID or keywords"/>
+        </form>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Next Due</th>
+                <th>Spacing</th>
+            </tr>
+            {% for card in cards %}
+                <tr>
+                    <td>{{card.question}}</td>
+                    <td style="width: 15px">{{card.answer}}</td>
+                    <td>{{card.next_due}}</td>
+                    <td>{{card.spacing}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</html>
