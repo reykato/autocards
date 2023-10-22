@@ -84,6 +84,7 @@ def generate_user_input(request):
             deck_size = int(request.POST.get('input2'))
             deck_name = request.POST.get('input3')
             retrieve_deck_json(prompt, deck_size, deck_name)
+            return redirect("browse_decks")
         except Exception as e:
             print(str(e))
     context = {}
