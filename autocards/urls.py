@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+
+def curry_redirect(target):
+    def moved_permanently(request):
+        return redirect(f'http://{request.get_host()}{target}')
+    return moved_permanently
 
 urlpatterns = [
+    path('', curry_redirect('/autocards_app/browse_decks')),
     path('admin/', admin.site.urls),
     path('autocards_app/', include('autocards_app.urls'))
 ]
