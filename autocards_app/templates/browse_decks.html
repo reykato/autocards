@@ -49,20 +49,6 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
-            </div>
-          </div>
-
-          
           <h2>Decks</h2><br>
           <h6><a href={% url 'add_deck' %}>Add Deck</a></h6>
           <div class="table-responsive">
@@ -77,6 +63,7 @@
                 {% for deck in decks %}
                 <tr style="cursor: pointer" class="clickable">
                     <td style="width: 50px"><a href={% url 'edit_deck' deck.name %}>Edit</a></td>
+                   {% comment %} <td style="width: 50px"><a href={% url 'review' deck.name %}>Review</a></td> {% endcomment %}
                     <td><a href={% url 'browse_cards' deck.name %}>{{deck.name}}</a></td>
                 </tr>
                 {% endfor %}

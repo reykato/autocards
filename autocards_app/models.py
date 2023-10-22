@@ -1,4 +1,5 @@
 from django.db import models
+import time
 
 # Create your models here.
 
@@ -21,3 +22,13 @@ class Deck(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+    
+
+def add_new_card_to_db(question, answer):
+    card = Card()
+    card.question = question
+    card.answer = answer
+    card.next_due = time.time()
+    card.spacing = 0
+    card.save()
+    return card.pk
