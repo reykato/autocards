@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Card
 from .forms import CardForm
 from django.db.models import Q
+from set_generator import *
 
 def get_cards(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -49,3 +50,11 @@ def sort_by_spacing(request):
 def sort_by_next_due(request):
     Card._meta.ordering = ["next_due", "spacing"]
     return redirect('browse_decks')
+
+def generate_user_input(request):
+    if(request.method == 'POST'):
+        prompt = request.POST.get('input1')
+        deck_size = request.POST.get('input2')
+        retrieve_deck_json(prompt, deck_size)
+    context = {}
+    return render(request, 'set_generator.html', context)
