@@ -5,8 +5,9 @@ import openai
 import json
 import re
 from django.http import HttpResponse
+from . import set_generator_api_key
 
-openai.api_key = "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"
+openai.api_key = set_generator_api_key.api_key
 
 # This translates the json file into a readable form by the Django template
     # this is done this way because it was originally json and changed last minute :3
@@ -45,7 +46,7 @@ def retrieve_deck_json(prompt, size):
         {"role": "user", "content": "3 most common words English to Spanish"},
         {"role": "assistant", "content": "front: [Hello] back: [Hola] front: [Thank you] back: [Gracias] front: [Please] back: [Por favor]"},
         {"role": "user", "content": prompt}
-        ]
+        ] 
         )
     else:
         error = True
