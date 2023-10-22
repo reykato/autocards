@@ -17,7 +17,7 @@ class Card(models.Model):
     
 class Deck(models.Model):
     name = models.TextField()
-    card = Card()
+    cards = models.ManyToManyField(Card)
 
     def __str__(self):
-        return f"this is a deck"
+        return f"{self.name}"
