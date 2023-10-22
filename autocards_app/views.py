@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import CardForm
+from .forms import *
 from django.db.models import Q
 
-def get_cards(request):
+def get_cards(request, deck_name):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    cards = Card.objects.filter(Q(question__icontains=q) | Q(answer__icontains=q))
+    cards = Deck.objects.get(name=deck_name).cards.all()
     context = {'cards': cards}
     return render(request, 'browse_cards.html', context)
 
@@ -16,13 +16,35 @@ def get_decks(request):
     context = {'decks' : decks}
     return render(request, "browse_decks.html", context)
 
+def edit_deck(request, deck_name):
+    deck = Deck.objects.get(name=deck_name)
+    form = DeckForm(instance=deck)
+    if request.method == 'POST':
+        form = DeckForm(request.POST, instance = deck)
+        if form.is_valid():
+            form.save()
+            return redirect('browse_decks')
+    context = {'form' : form}
+    return render(request, 'edit_deck.html', context)
+
+def add_deck(request):
+    form = DeckForm()
+    if request.method == 'POST':
+        form = DeckForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('browse_decks')
+
+    context = {'form': form}
+    return render(request, 'add_deck.html', context)
+
 def add_card(request):
     form = CardForm()
     if request.method == 'POST':
         form = CardForm(request.POST)
         if form.is_valid:
             form.save()
-            return redirect('/autocards_app/browse_cards')
+            return redirect('browse_cards')
 
     context = {'form': form}
     return render(request, 'add_deck.html', context)
@@ -30,7 +52,6 @@ def add_card(request):
 def edit_card(request, pk):
     card = Card.objects.get(id=pk)
     form = CardForm(instance=card)
- #I love you So. Much
     if request.method == 'POST':
         form = CardForm(request.POST, instance = card)
         if form.is_valid():
