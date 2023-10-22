@@ -15,5 +15,22 @@ var ease = 0;
         }
         function setEase(e) {
             ease = e;
+            switch(ease) {
+                case "1":
+                document.getElementById("dif").innerHTML = "Difficulty: Very Hard"
+                break
+                case 2:
+                document.getElementById("dif").innerHTML = "Difficulty: Hard"
+                break
+                case 3:
+                document.getElementById("dif").innerHTML = "Difficulty: Medium"
+                break
+                case 4:
+                document.getElementById("dif").innerHTML = "Difficulty: Easy"
+                break
+                case 5:
+                document.getElementById("dif").innerHTML = "Difficulty: Very Easy"
+                break
+            }
             console.log(ease)
         }
