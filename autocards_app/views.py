@@ -51,7 +51,8 @@ def sort_by_next_due(request):
     return redirect('browse_decks')
 
 def generate_user_input(request):
-    if(request.method == 'POST'):
+    print("Loading...")
+    if(request.method == 'POST'): 
         try:
             prompt = request.POST.get('input1')
             deck_size = int(request.POST.get('input2'))
