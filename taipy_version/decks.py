@@ -1,10 +1,11 @@
 from classes import *
 from taipy.gui import navigate
-decks_df = getDecksDF()
+import browse
+decks_df = getDecksDB()
 
-#<a href="/browse?name={nameofdeck}">
 def decks_clicked(state, var_name, action, payload):
-    #state.
+    browse.deck_name = decks_df[payload['index']]
+    
     navigate(state, "browse")
 
 decks_md = """
