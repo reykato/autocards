@@ -8,4 +8,5 @@ urlpatterns = [
     path('add_deck/', views.add_deck, name='add_deck'),
     path('add_card/', views.add_card, name="add_card"),
     path('set_generator/', views.generate_user_input, name="set_generator"),
+    path("review/<str:deck_id>/<int:card_id>/", views.review, name="review"),
 ]

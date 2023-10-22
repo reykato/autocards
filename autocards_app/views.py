@@ -89,3 +89,11 @@ def generate_user_input(request):
             print(str(e))
     context = {}
     return render(request, 'set_generator.html', context)
+
+def review(request, deck_id, card_id):
+    #try:
+    card = Deck.objects.get(name=deck_id).cards.get(id=card_id)
+    context = {'card': card}
+    #except Card.DoesNotExist:
+        #raise Http404("Question does not exist")
+    return render(request, 'review.html', context)
