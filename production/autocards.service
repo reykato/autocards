@@ -1,8 +1,9 @@
 [Unit]
-Description=Taipy backend for autocards site
+Description=Django backend for autocards site
 
 [Service]
-ExecStart=python3 /opt/sites/autocards/staging-main.py
+WorkingDir=/opt/sites/autocards/
+ExecStart=python3 /opt/sites/autocards/manage.py runserver 12181
 
 [Install]
 WantedBy=multi-user.target
