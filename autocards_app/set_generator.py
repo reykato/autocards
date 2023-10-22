@@ -6,7 +6,7 @@ import json
 import re
 from django.http import HttpResponse
 
-openai.api_key = ""
+openai.api_key = "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"
 
 # This translates the json file into a readable form by the Django template
     # this is done this way because it was originally json and changed last minute :3
