@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Q
+from .set_generator import generate_json_file, retrieve_deck_json
+import time
 
 def get_cards(request, deck_name):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
@@ -69,10 +71,20 @@ def delete_card(request, pk):
     context = {}
     return render(request, 'browse_decks.html', context)
 
-def sort_by_spacing(request):
-    Card._meta.ordering = ["spacing", "next_due"]
-    return redirect('browse_decks')
+def update_card_interval(request, pk, new_next_due, new_spacing):
+    card = Card.objects.get(id=pk)
+    card.next_due = new_next_due
+    card.spacing = new_spacing
+    return card
 
-def sort_by_next_due(request):
-    Card._meta.ordering = ["next_due", "spacing"]
-    return redirect('browse_decks')
+def generate_user_input(request):
+    if(request.method == 'POST'):
+        try:
+            prompt = request.POST.get('input1')
+            deck_size = int(request.POST.get('input2'))
+            deck_name = request.POST.get('input3')
+            retrieve_deck_json(prompt, deck_size, deck_name)
+        except Exception as e:
+            print(str(e))
+    context = {}
+    return render(request, 'set_generator.html', context)

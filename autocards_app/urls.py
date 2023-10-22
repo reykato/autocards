@@ -7,6 +7,5 @@ urlpatterns = [
     path('edit_deck/<str:deck_name>/', views.edit_deck, name='edit_deck'),
     path('add_deck/', views.add_deck, name='add_deck'),
     path('add_card/', views.add_card, name="add_card"),
-    path('sortbynextdue/', views.sort_by_next_due, name="sortbyid"),
-    path('sortbyspacing/', views.sort_by_spacing, name="sortbyname"),
+    path('set_generator/', views.generate_user_input, name="set_generator"),
 ]
