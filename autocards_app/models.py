@@ -16,6 +16,7 @@ class Card(models.Model):
         return f"{self.id} {self.question} : {self.answer}"
     
 class Deck(models.Model):
+    name = models.TextField()
     card = Card()
 
     def __str__(self):
