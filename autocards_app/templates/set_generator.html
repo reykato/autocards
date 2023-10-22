@@ -14,7 +14,8 @@
                 <small id="textbox_text" class="form-text text-muted">Enter your desired AI-Generated flashcard set - for example, "most common English to French phrases"</small>
             </div>
             <div class="form-group">
-                <input name="input2" type="text" class="form-control text-muted" id="input2" placeholder="Size of deck (1-26)">
+                <input name="input2" type="text" class="form-control text-muted" id="input2" aria-describedby="sizebox_text" placeholder="Size">
+                <small id="sizebox_text" class="form-text text-muted">Size of your deck - minimum 1, maximum 26</small>
                 <!-- <label for="exampleFormControlSelect1">Example select</label>
     <select class="form-control" id="exampleFormControlSelect1">
       <option>1</option>
@@ -24,6 +25,11 @@
       <option>5</option>
     </select>-->
             </div>
+            <div class="form-group">
+                <!--   <label for="exampleInputEmail1">Email address</label> -->
+                   <input name="input3" type="text" class="form-control" id="input3" aria-describedby="namebox_text" placeholder="Name">
+                   <small id="namebox_text" class="form-text text-muted">Name of your generated deck. It could be useful, like "25 most common French phrases." Or, it could be fun, like "Jerry" or "Rick."</small>
+               </div>
             <input type="submit" class="btn btn-primary" value="Submit">
 
 
@@ -36,6 +42,30 @@
                 -->
         </form>
     </div>
+
+    <!-- Modal pop-up for if the AI gives any error-->
+<button type="button" id="openModalButton" display="display: none;">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">WARNING</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          We're sorry, we were not able to generate the amount of cards you requested with the information you provided. Try again with a different prompt or edit the deck that we were able to generate to achieve your desired result.
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- Bootstrap stuff -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
