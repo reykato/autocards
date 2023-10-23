@@ -9,5 +9,5 @@ user functionality & ease of use - for example i spent a half hour trying to fig
 as many cards as the user requests - but i'm pretty proud of it. also the ai sucks because i changed a line or two of it's training and then forgot
 to test it afterwards and now it has a ~50% success rate. whoops! live and learn. the whole github is spaghetti because outside factors led us to be on 
 major crunch so we just had to get a working product up as fast as possible. so this repo is technically slightly outdated and not in production but on tyler's machine
-we worked together to slightly modify my code to fit with his and then he pushed to staging. we were also all unfamiliar to git and mostly unfamiliar with github so 
+we worked together to slightly modify my code to fit with his and then he pushed to staging. we were also all unfamiliar to git (as you could probably tell by the name of this branch) and mostly unfamiliar with github so :P
 it was very valuable learning all that stuff. idk why im wafflin here but this is my stuff :D
