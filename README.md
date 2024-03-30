@@ -1,3 +1,8 @@
+fThis project is the result of 24 hours of work by a group of five during the 2023 HackPSU hackathon. The vision was to create a spaced repetition flashcard method of learning with the ability to generate flashcards with artificial intelligence. We spent nearly eight hours using an app framework which simply wasn't designed for such a project, and had to scrap all of our work. After switching to Django, a web framework for Python, we were able to get something done.
+
+The outcome wasn't ideal. The back end is mostly finished but is lacking connections to the front end. I, Tyler Lindsay, being the group's leader, learned a lot about leadership and time management. We all learned how to work together on the same project. Both are very important in software development! 
+
+Original text:
 BrainCloud.tech is a website that runs on a technology we named 'autocards.'
 Inspired by a member of our team who swears by spaced repition memorization, BrainCloud is the foundation of an easy-to-use webapp that will serve as not only an effective 
 spaced repition flashcard memorization service but an AI-powered flashcard generator, simplifying the worst part of having to memorize sets of data.
